@@ -1,10 +1,10 @@
 package handlers
 
 import (
-	"bookings-udemy/pkg/config"
-	"bookings-udemy/pkg/models"
-	"bookings-udemy/pkg/render"
 	"net/http"
+	"web_server/pkg/config"
+	"web_server/pkg/models"
+	"web_server/pkg/render"
 )
 
 // Repo the repository used by the handlers

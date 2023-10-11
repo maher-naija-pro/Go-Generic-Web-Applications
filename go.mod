@@ -1,4 +1,4 @@
-module bookings-udemy
+module web_server
 
 go 1.15
 

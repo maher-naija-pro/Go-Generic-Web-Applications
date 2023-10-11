@@ -1,14 +1,14 @@
 package render
 
 import (
-	"bookings-udemy/pkg/config"
-	"bookings-udemy/pkg/models"
 	"bytes"
 	"fmt"
 	"html/template"
 	"log"
 	"net/http"
 	"path/filepath"
+	"web_server/pkg/config"
+	"web_server/pkg/models"
 )
 
 var functions = template.FuncMap{}
