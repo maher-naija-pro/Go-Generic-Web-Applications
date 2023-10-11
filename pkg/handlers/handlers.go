@@ -35,6 +35,12 @@ func (m *Repository) Home(w http.ResponseWriter, r *http.Request) {
 	render.RenderTemplate(w, "home.page.tmpl", &models.TemplateData{})
 }
 
+// Maher is the handler for the maher page
+func (m *Repository) Maher(w http.ResponseWriter, r *http.Request) {
+
+	render.RenderTemplate(w, "maher.page.tmpl", &models.TemplateData{})
+}
+
 // About is the handler for the about page
 func (m *Repository) About(w http.ResponseWriter, r *http.Request) {
 	// perform some logic
