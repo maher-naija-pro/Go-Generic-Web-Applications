@@ -2,6 +2,8 @@ package handlers
 
 import (
 	"net/http"
+	//"net/http/httputil"
+	"fmt"
 	"web_server/pkg/config"
 	"web_server/pkg/models"
 	"web_server/pkg/render"
@@ -35,11 +37,22 @@ func (m *Repository) Home(w http.ResponseWriter, r *http.Request) {
 	render.RenderTemplate(w, "home.page.tmpl", &models.TemplateData{})
 }
 
-// Maher is the handler for the maher page
-func (m *Repository) Maher(w http.ResponseWriter, r *http.Request) {
+// Login is the handler for the maher page
+func (m *Repository) Login(w http.ResponseWriter, r *http.Request) {
+//	reqDump, err := httputil.DumpRequest(r, true)
+//    if err != nil {
+//        fmt.Printf("REQUESTn")
+//    }
+//
+ //   fmt.Printf("REQUEST:\n%s", string(reqDump))
+	
+	r.ParseForm()
 
-	render.RenderTemplate(w, "index.page.tmpl", &models.TemplateData{})
+	user := r.Form.Get("username")
+	password := r.Form.Get("password")
+	w.Write([]byte(fmt.Sprintf("the user %s, pass %s", string(user),string(password))))
 }
+
 
 // About is the handler for the about page
 func (m *Repository) About(w http.ResponseWriter, r *http.Request) {
