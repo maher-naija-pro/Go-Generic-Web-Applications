@@ -1,0 +1,116 @@
+*, *::after, *::before {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #000000;
+}
+
+form * {
+    font-family: "Poppins"sans-serif;
+    color: hwb(245 1% 48%);
+    letter-spacing: 0.6px;
+    outline: none;
+    border: none;
+}
+
+form {
+    background-color: rgba(255, 255, 255, 0.13);
+    height: 500px;
+    width: 400px;
+    backdrop-filter: blur(10px);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 35px rgba(8, 7, 16, 0.6);
+    padding: 50px 35px;
+    border-radius: 10px;
+}
+
+form h3 {
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 42px;
+    text-align: center;
+}
+
+label {
+    display: block;
+    margin-top: 30px;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+input {
+    display: block;
+    height: 50px;
+    width: 100%;
+    background-color: rgba(6, 27, 144, 0.47);
+    border-radius: 3px;
+    padding: 0 10px;
+    margin-top: 8px;
+ 
+    font-weight: bold;
+
+}
+
+input:hover {
+     background-color:  rgba(6, 27, 144, 0.701);
+}
+
+::placeholder {
+    color: rgb(15, 110, 174);
+}
+
+button {
+    margin-top: 50px;
+    width: 100%;
+    color: #000000;
+    background-color: #00719486;
+    padding: 15px 0;
+    font-size: 22px;
+    font-weight: 600;
+    border-radius: 25px;
+    cursor: pointer;
+
+}
+
+button:hover {
+    background: linear-gradient(to right, #2f649c, #4400ffb3);
+}
+
+
+
+.bg {
+    width: 430px;
+    height: 480px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.bg .shape {
+    height: 200px;
+    width: 200px;
+    position: absolute;
+    border-radius: 50%;
+}
+
+.shape:first-child {
+    background: linear-gradient(#204bb8, #7eb0e5);
+    left: -80px;
+    top: -80px;
+    filter: blur(10px);
+}
+
+.shape:last-child {
+    background: linear-gradient(#0e008b, #0033ff64);
+    right: -50px;
+    bottom: -150px;
+    filter: blur(10px);
+}

@@ -38,7 +38,7 @@ func (m *Repository) Home(w http.ResponseWriter, r *http.Request) {
 // Maher is the handler for the maher page
 func (m *Repository) Maher(w http.ResponseWriter, r *http.Request) {
 
-	render.RenderTemplate(w, "maher.page.tmpl", &models.TemplateData{})
+	render.RenderTemplate(w, "index.page.tmpl", &models.TemplateData{})
 }
 
 // About is the handler for the about page
@@ -54,4 +54,9 @@ func (m *Repository) About(w http.ResponseWriter, r *http.Request) {
 	render.RenderTemplate(w, "about.page.tmpl", &models.TemplateData{
 		StringMap: stringMap,
 	})
+
+
+
+
+
 }
