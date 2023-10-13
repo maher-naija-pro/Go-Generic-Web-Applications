@@ -2,8 +2,10 @@ package handlers
 
 import (
 	"net/http"
-	//"net/http/httputil"
+	"encoding/json"
+	"log"
 	"fmt"
+	"net/http/httputil"
 	"web_server/pkg/config"
 	"web_server/pkg/models"
 	"web_server/pkg/render"
@@ -37,20 +39,48 @@ func (m *Repository) Home(w http.ResponseWriter, r *http.Request) {
 	render.RenderTemplate(w, "home.page.tmpl", &models.TemplateData{})
 }
 
+
+type jsonResponse struct {
+	OK      bool   `json:"ok"`
+	Message string `json:"message"`
+}
+
+func Dump_req (r *http.Request) {
+	reqDump, err := httputil.DumpRequest(r, true)
+    if err != nil {
+        fmt.Printf("REQUESTn")
+    }
+    fmt.Printf("REQUEST:\n%s", string(reqDump))
+return
+
+}
+
 // Login is the handler for the maher page
 func (m *Repository) Login(w http.ResponseWriter, r *http.Request) {
-//	reqDump, err := httputil.DumpRequest(r, true)
-//    if err != nil {
-//        fmt.Printf("REQUESTn")
-//    }
-//
- //   fmt.Printf("REQUEST:\n%s", string(reqDump))
-	
+    //Dump_req (r)
 	r.ParseForm()
 
 	user := r.Form.Get("username")
 	password := r.Form.Get("password")
-	w.Write([]byte(fmt.Sprintf("the user %s, pass %s", string(user),string(password))))
+	_ = password 
+    _ = user
+
+	//w.Write([]byte(fmt.Sprintf("the user %s, pass %s", string(user),string(password))))
+	
+	resp := jsonResponse{
+		OK:      true,
+		Message: "Available!",
+	}
+
+	out, err := json.MarshalIndent(resp, "", "     ")
+	if err != nil {
+		log.Println(err)
+	}
+	
+
+	w.Header().Set("Content-Type", "application/json")
+	w.Write(out)
+
 }
 
 
@@ -67,9 +97,4 @@ func (m *Repository) About(w http.ResponseWriter, r *http.Request) {
 	render.RenderTemplate(w, "about.page.tmpl", &models.TemplateData{
 		StringMap: stringMap,
 	})
-
-
-
-
-
 }
