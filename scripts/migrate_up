@@ -1,0 +1,1 @@
+ migrate -path database/migration/ -database "postgresql://maher:maher@localhost:5432/maher?sslmode=disable" -verbose up 
