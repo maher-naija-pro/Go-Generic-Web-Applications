@@ -65,16 +65,25 @@ func (m *Repository) Login(w http.ResponseWriter, r *http.Request) {
     //Dump_req (r)
 	r.ParseForm()
 
-	user := r.Form.Get("username")
-	password := r.Form.Get("password")
-	_ = password 
-    _ = user
+	user := models.User{
+		Username:   r.Form.Get("username")   ,
+		Password:   r.Form.Get("password")   ,
+ 	}
 
+
+	ID, err := m.DB.InsertUser(user)
+	if err != nil {
+		log.Println(err)
+		m.App.Session.Put(r.Context(), "error", "can't insert reservation into database!")
+		http.Redirect(w, r, "/", http.StatusTemporaryRedirect)
+		return
+	}
+	 _ = ID
 	//w.Write([]byte(fmt.Sprintf("the user %s, pass %s", string(user),string(password))))
 	
 	resp := jsonResponse{
 		OK:      true,
-		Message: "Available!",
+		Message: "hello" ,
 	}
 
 	out, err := json.MarshalIndent(resp, "", "     ")
