@@ -4,13 +4,14 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-	"time"
+	"time"	
 	"web_server/pkg/config"
 	"web_server/pkg/handlers"
 	"web_server/pkg/render"
-
+	"web_server/pkg/driver"
 	"github.com/alexedwards/scs/v2"
 )
+
 
 const portNumber = ":8080"
 
@@ -31,6 +32,18 @@ func main() {
 
 	app.Session = session
 
+
+	// connect to database
+	log.Println("Connecting to database...")
+	db, err := driver.ConnectSQL("host=localhost port=5432 dbname=maher user=maher password=maher")
+	if err != nil {
+		log.Fatal("Cannot connect to database! Dying...")
+	}
+
+	
+	log.Println("Connected to database!")
+
+	
 	tc, err := render.CreateTemplateCache()
 	if err != nil {
 		log.Fatal("cannot create template cache")
@@ -39,9 +52,8 @@ func main() {
 	app.TemplateCache = tc
 	app.UseCache = false
 
-	repo := handlers.NewRepo(&app)
+	repo := handlers.NewRepo(&app,db)
 	handlers.NewHandlers(repo)
-
 	render.NewTemplates(&app)
 
 	fmt.Println(fmt.Sprintf("Staring application on port %s", portNumber))
