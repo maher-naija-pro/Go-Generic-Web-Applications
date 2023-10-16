@@ -19,7 +19,9 @@ func routes(app *config.AppConfig) http.Handler {
 	mux.Get("/", handlers.Repo.Home)
 	mux.Get("/about", handlers.Repo.About)
 	mux.Post("/login", handlers.Repo.Login)
-
+    mux.Get("/login", handlers.Repo.Login_Show)
+	mux.Post("/subscribe",handlers.Repo.Subscribe)
+	mux.Get("/subscribe", handlers.Repo.Subscribe_Show)
 	// serve static files
 	fileServer := http.FileServer(http.Dir("./static/"))
 	mux.Handle("/static/*", http.StripPrefix("/static", fileServer))

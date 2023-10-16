@@ -36,6 +36,13 @@ func NewHandlers(r *Repository) {
 	Repo = r
 }
 
+
+
+type jsonResponse struct {
+	OK      bool   `json:"ok"`
+	Message string `json:"message"`
+}
+
 // Home is the handler for the home page
 func (m *Repository) Home(w http.ResponseWriter, r *http.Request) {
 	remoteIP := r.RemoteAddr
@@ -44,11 +51,17 @@ func (m *Repository) Home(w http.ResponseWriter, r *http.Request) {
 	render.RenderTemplate(w, "home.page.tmpl", &models.TemplateData{})
 }
 
-
-type jsonResponse struct {
-	OK      bool   `json:"ok"`
-	Message string `json:"message"`
+// login is the handler for the login page
+func (m *Repository) Login_Show(w http.ResponseWriter, r *http.Request) {
+	render.RenderTemplate(w, "login.page.tmpl", &models.TemplateData{})
 }
+
+
+// subscribe is the handler for the subscribe page
+func (m *Repository) Subscribe_Show(w http.ResponseWriter, r *http.Request) {
+	render.RenderTemplate(w, "subscribe.page.tmpl", &models.TemplateData{})
+}
+
 
 func Dump_req (r *http.Request) {
 	reqDump, err := httputil.DumpRequest(r, true)
@@ -97,6 +110,41 @@ func (m *Repository) Login(w http.ResponseWriter, r *http.Request) {
 
 }
 
+func (m *Repository) Subscribe(w http.ResponseWriter, r *http.Request) {
+    //Dump_req (r)
+	r.ParseForm()
+
+
+	user := models.User{
+		Username:   r.Form.Get("username")   ,
+		Password:   r.Form.Get("password")   ,
+ 	}
+
+
+	ID, err := m.DB.InsertUser(user)
+	if err != nil {
+		log.Println(err)
+		m.App.Session.Put(r.Context(), "error", "can't insert reservation into database!")
+		http.Redirect(w, r, "/", http.StatusTemporaryRedirect)
+		return
+	}
+	 _ = ID
+	
+	resp := jsonResponse{
+		OK:      true,
+		Message: "hello" ,
+	}
+
+	out, err := json.MarshalIndent(resp, "", "     ")
+	if err != nil {
+		log.Println(err)
+	}
+	
+
+	w.Header().Set("Content-Type", "application/json")
+	w.Write(out)
+
+}
 
 // About is the handler for the about page
 func (m *Repository) About(w http.ResponseWriter, r *http.Request) {
