@@ -4,6 +4,7 @@ go 1.15
 
 require (
 	github.com/alexedwards/scs/v2 v2.4.0
+	github.com/asaskevich/govalidator v0.0.0-20230301143203-a9d515a09cc2
 	github.com/cockroachdb/cockroach-go v2.0.1+incompatible // indirect
 	github.com/cosmtrek/air v1.45.0 // indirect
 	github.com/fatih/color v1.15.0 // indirect
@@ -30,6 +31,7 @@ require (
 	github.com/spf13/afero v1.10.0 // indirect
 	github.com/spf13/cobra v1.7.0 // indirect
 	github.com/tdewolff/parse/v2 v2.6.8 // indirect
+	golang.org/x/crypto v0.14.0 // indirect
 	golang.org/x/sync v0.4.0 // indirect
 	golang.org/x/sys v0.13.0 // indirect
 )
