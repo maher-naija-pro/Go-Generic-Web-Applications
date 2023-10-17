@@ -4,6 +4,7 @@
 # Binaries for programs and plugins
 # #
 bookings-app-0.0.42/
+bookings
 bin/
 tmp/
 *.exe

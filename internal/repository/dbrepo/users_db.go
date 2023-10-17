@@ -6,6 +6,8 @@ import (
 	"context"
 	"web_server/internal/models"
 	"time"
+	"fmt"
+	"reflect"
 	"log"
 	 "golang.org/x/crypto/bcrypt"
 
@@ -16,7 +18,7 @@ func (m *postgresDBRepo) AuthUser (email, testPaswword string) (int, error) {
    	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
 	
-	var id int
+	var id longint
 
     var result string
 	 
@@ -31,7 +33,7 @@ func (m *postgresDBRepo) AuthUser (email, testPaswword string) (int, error) {
 		return id, err
 	}
 	 log.Println(result)
-	  log.Println(id)
+	 log.Println(id)
 //	err = bcrypt.CompareHashAndPassword([]byte(hashpassword),[]byte(testPaswword))
 //	if err == bcrypt.ErrMismatchedHashAndPassword  {
 //		return 0, err
