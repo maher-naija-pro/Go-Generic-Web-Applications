@@ -3,7 +3,7 @@ package dbrepo
 
 import (
 	"context"
-	"web_server/pkg/models"
+	"web_server/internal/models"
 	"time"
 )
 

@@ -5,10 +5,10 @@ import (
 	"log"
 	"net/http"
 	"time"	
-	"web_server/pkg/config"
-	"web_server/pkg/handlers"
-	"web_server/pkg/render"
-	"web_server/pkg/driver"
+	"web_server/internal/config"
+	"web_server/internal/handlers"
+	"web_server/internal/render"
+	"web_server/internal/driver"
 	"github.com/alexedwards/scs/v2"
 )
 

@@ -2,7 +2,7 @@ package repository
 
 
 import (
-	"web_server/pkg/models"
+	"web_server/internal/models"
 )
 
 type DatabaseRepo interface {

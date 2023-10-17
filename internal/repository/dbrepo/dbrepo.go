@@ -2,8 +2,8 @@ package dbrepo
 
 import (
 	"database/sql"
-	"web_server/pkg/config"
-	"web_server/pkg/repository"
+	"web_server/internal/config"
+	"web_server/internal/repository"
 )
 
 type postgresDBRepo struct {

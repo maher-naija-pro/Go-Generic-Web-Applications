@@ -6,12 +6,12 @@ import (
 	"log"
 	"fmt"
 	"net/http/httputil"
-	"web_server/pkg/config"
-	"web_server/pkg/models"
-	"web_server/pkg/render"
-	"web_server/pkg/driver"
-	"web_server/pkg/repository"
-	"web_server/pkg/repository/dbrepo"
+	"web_server/internal/config"
+	"web_server/internal/models"
+	"web_server/internal/render"
+	"web_server/internal/driver"
+	"web_server/internal/repository"
+	"web_server/internal/repository/dbrepo"
 )
 
 // Repo the repository used by the handlers
