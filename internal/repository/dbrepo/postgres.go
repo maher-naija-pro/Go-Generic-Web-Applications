@@ -19,16 +19,17 @@ func (m *postgresDBRepo) InsertUser(res models.User) (int, error) {
 
 	
 
-	stmt := `insert into users (id,username, password) 
-			values ($1, $2, $3) returning id`
+	stmt := `insert into users (id,first_name,last_name,email, password,access_level) 
+			values ($1, $2, $3, $4,$5,$6) returning id`
 
 	_, err := m.DB.ExecContext(ctx, stmt,
-        2,
-		res.Username,
+        1,
+		res.FirstName,
+		res.LastName,
+		res.Email,
 		res.Password,
+		1,
 	)
-
-	
 
 	if err != nil {
 		return 0, err

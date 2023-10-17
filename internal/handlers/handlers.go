@@ -4,8 +4,6 @@ import (
 	"net/http"
 	"encoding/json"
 	"log"
-	"fmt"
-	"net/http/httputil"
 	"web_server/internal/config"
 	"web_server/internal/models"
 	"web_server/internal/render"
@@ -63,15 +61,7 @@ func (m *Repository) Subscribe_Show(w http.ResponseWriter, r *http.Request) {
 }
 
 
-func Dump_req (r *http.Request) {
-	reqDump, err := httputil.DumpRequest(r, true)
-    if err != nil {
-        fmt.Printf("REQUESTn")
-    }
-    fmt.Printf("REQUEST:\n%s", string(reqDump))
-return
 
-}
 
 // Login is the handler for the maher page
 func (m *Repository) Login(w http.ResponseWriter, r *http.Request) {
@@ -79,20 +69,19 @@ func (m *Repository) Login(w http.ResponseWriter, r *http.Request) {
 	r.ParseForm()
 
 	user := models.User{
-		Username:   r.Form.Get("username")   ,
+		Email:   r.Form.Get("email")   ,
 		Password:   r.Form.Get("password")   ,
  	}
-
-
-	ID, err := m.DB.InsertUser(user)
-	if err != nil {
-		log.Println(err)
-		m.App.Session.Put(r.Context(), "error", "can't insert reservation into database!")
-		http.Redirect(w, r, "/", http.StatusTemporaryRedirect)
-		return
-	}
-	 _ = ID
-	//w.Write([]byte(fmt.Sprintf("the user %s, pass %s", string(user),string(password))))
+     
+	_ = user
+	//ID, err := m.DB.GetUser(user)
+	//if err != nil {
+	//	log.Println(err)
+	//	m.App.Session.Put(r.Context(), "error", "can't insert reservation into database!")
+	//	http.Redirect(w, r, "/", http.StatusTemporaryRedirect)
+	//	return
+	//}
+	// _ = ID
 	
 	resp := jsonResponse{
 		OK:      true,
@@ -116,7 +105,10 @@ func (m *Repository) Subscribe(w http.ResponseWriter, r *http.Request) {
 
 
 	user := models.User{
-		Username:   r.Form.Get("username")   ,
+		
+		FirstName:   r.Form.Get("firstname")   ,
+		LastName:    r.Form.Get("lastname")   ,
+		Email:       r.Form.Get("email")   ,
 		Password:   r.Form.Get("password")   ,
  	}
 
