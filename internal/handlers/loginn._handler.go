@@ -30,7 +30,7 @@ func (m *Repository) Login(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Println(err)
 		m.App.Session.Put(r.Context(), "error", "can't insert reservation into database!")
-		http.Redirect(w, r, "/login", http.StatusTemporaryRedirect)
+		http.Redirect(w, r, "login", http.StatusTemporaryRedirect)
 		return
 	}
 	_ = ID
