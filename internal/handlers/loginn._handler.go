@@ -20,21 +20,20 @@ func (m *Repository) Login_Show(w http.ResponseWriter, r *http.Request) {
 func (m *Repository) Login(w http.ResponseWriter, r *http.Request) {
     //Dump_req (r)
 	r.ParseForm()
-
-	user := models.User{
-		Email:   r.Form.Get("email")   ,
-		Password:   r.Form.Get("password")   ,
- 	}
+	
+	email :=  r.Form.Get("email")   
+	password := r.Form.Get("password")   
      
-	_ = user
-	//ID, err := m.DB.GetUser(user)
-	//if err != nil {
-	//	log.Println(err)
-	//	m.App.Session.Put(r.Context(), "error", "can't insert reservation into database!")
-	//	http.Redirect(w, r, "/", http.StatusTemporaryRedirect)
-	//	return
-	//}
-	// _ = ID
+	
+
+	ID, err := m.DB.AuthUser(email,password)
+	if err != nil {
+		log.Println(err)
+		m.App.Session.Put(r.Context(), "error", "can't insert reservation into database!")
+		http.Redirect(w, r, "/login", http.StatusTemporaryRedirect)
+		return
+	}
+	_ = ID
 	
 	resp := jsonResponse{
 		OK:      true,

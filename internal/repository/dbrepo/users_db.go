@@ -11,7 +11,7 @@ import (
 )
 
 // search a user into the database
-func (m *postgresDBRepo) AuthUser (email, testPaswword string) (int,string, error) {
+func (m *postgresDBRepo) AuthUser (email, testPaswword string) (int, error) {
    	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
 	var id int  
@@ -24,17 +24,17 @@ func (m *postgresDBRepo) AuthUser (email, testPaswword string) (int,string, erro
    row := m.DB.QueryRowContext(ctx, query,email)
    err := row.Scan(&id,&hashpassword)
 	if err != nil  {
-		return id, "", err
+		return id, err
 	}
 	err = bcrypt.CompareHashAndPassword([]byte(hashpassword),[]byte(testPaswword))
 	if err == bcrypt.ErrMismatchedHashAndPassword  {
-		return 0,"",  err
+		return 0, err
 	} else 
 	{
-      return 0, "", err
+      return 0, err
 	}
 
-	return id, hashpassword, nil
+	return id, nil
 }
 
 
@@ -69,7 +69,7 @@ return u, nil
 
 
 // inserts a user into the database
-func (m *postgresDBRepo) InsertUser(res models.User) (int, error) {
+func (m *postgresDBRepo) InsertUser(res models.User) (int, error) {					
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
 
