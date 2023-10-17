@@ -2,8 +2,6 @@ package handlers
 
 import (
 	"net/http"
-	"encoding/json"
-	"log"
 	"web_server/internal/config"
 	"web_server/internal/models"
 	"web_server/internal/render"
@@ -49,94 +47,7 @@ func (m *Repository) Home(w http.ResponseWriter, r *http.Request) {
 	render.RenderTemplate(w, "home.page.tmpl", &models.TemplateData{})
 }
 
-// login is the handler for the login page
-func (m *Repository) Login_Show(w http.ResponseWriter, r *http.Request) {
-	render.RenderTemplate(w, "login.page.tmpl", &models.TemplateData{})
-}
 
-
-// subscribe is the handler for the subscribe page
-func (m *Repository) Subscribe_Show(w http.ResponseWriter, r *http.Request) {
-	render.RenderTemplate(w, "subscribe.page.tmpl", &models.TemplateData{})
-}
-
-
-
-
-// Login is the handler for the maher page
-func (m *Repository) Login(w http.ResponseWriter, r *http.Request) {
-    //Dump_req (r)
-	r.ParseForm()
-
-	user := models.User{
-		Email:   r.Form.Get("email")   ,
-		Password:   r.Form.Get("password")   ,
- 	}
-     
-	_ = user
-	//ID, err := m.DB.GetUser(user)
-	//if err != nil {
-	//	log.Println(err)
-	//	m.App.Session.Put(r.Context(), "error", "can't insert reservation into database!")
-	//	http.Redirect(w, r, "/", http.StatusTemporaryRedirect)
-	//	return
-	//}
-	// _ = ID
-	
-	resp := jsonResponse{
-		OK:      true,
-		Message: "hello" ,
-	}
-
-	out, err := json.MarshalIndent(resp, "", "     ")
-	if err != nil {
-		log.Println(err)
-	}
-	
-
-	w.Header().Set("Content-Type", "application/json")
-	w.Write(out)
-
-}
-
-func (m *Repository) Subscribe(w http.ResponseWriter, r *http.Request) {
-    //Dump_req (r)
-	r.ParseForm()
-
-
-	user := models.User{
-		
-		FirstName:   r.Form.Get("firstname")   ,
-		LastName:    r.Form.Get("lastname")   ,
-		Email:       r.Form.Get("email")   ,
-		Password:   r.Form.Get("password")   ,
- 	}
-
-
-	ID, err := m.DB.InsertUser(user)
-	if err != nil {
-		log.Println(err)
-		m.App.Session.Put(r.Context(), "error", "can't insert reservation into database!")
-		http.Redirect(w, r, "/", http.StatusTemporaryRedirect)
-		return
-	}
-	 _ = ID
-	
-	resp := jsonResponse{
-		OK:      true,
-		Message: "hello" ,
-	}
-
-	out, err := json.MarshalIndent(resp, "", "     ")
-	if err != nil {
-		log.Println(err)
-	}
-	
-
-	w.Header().Set("Content-Type", "application/json")
-	w.Write(out)
-
-}
 
 // About is the handler for the about page
 func (m *Repository) About(w http.ResponseWriter, r *http.Request) {
