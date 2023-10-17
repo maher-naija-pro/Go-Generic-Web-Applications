@@ -74,15 +74,14 @@ func (m *postgresDBRepo) InsertUser(res models.User) (int, error) {
 	defer cancel()
 
 	hashedPassword, _ := bcrypt.GenerateFromPassword([]byte(res.Password), 12)
-	stmt := `insert into users (id,first_name,last_name,email, password,access_level) 
-			values ($1, $2, $3, $4,$5,$6) returning id`
+	stmt := `insert into users (first_name,last_name,email, password,access_level) 
+			values ($1, $2, $3, $4,$5) returning id`
 	_, err := m.DB.ExecContext(ctx, stmt,
-        3,
 		res.FirstName,
 		res.LastName,
 		res.Email,
 		hashedPassword,
-		3,
+		1,
 	)
 	if err != nil {
 		return 0, err
