@@ -2,7 +2,6 @@ package handlers
 
 import (
 	"net/http"
-	"encoding/json"
 	"log"
 	"web_server/internal/models"
 	"web_server/internal/render"
@@ -31,23 +30,10 @@ func (m *Repository) Subscribe(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Println(err)
 		m.App.Session.Put(r.Context(), "error", "can't insert reservation into database!")
-		http.Redirect(w, r, "/", http.StatusTemporaryRedirect)
+		http.Redirect(w, r, "subscribe", http.StatusSeeOther)
 		return
 	}
 	 _ = ID
-	
-	resp := jsonResponse{
-		OK:      true,
-		Message: "hello" ,
-	}
-
-	out, err := json.MarshalIndent(resp, "", "     ")
-	if err != nil {
-		log.Println(err)
-	}
-	
-
-	w.Header().Set("Content-Type", "application/json")
-	w.Write(out)
+     http.Redirect(w, r, "login", http.StatusSeeOther)	
 
 }

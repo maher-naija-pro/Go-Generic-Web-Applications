@@ -6,8 +6,6 @@ import (
 	"context"
 	"web_server/internal/models"
 	"time"
-	"fmt"
-	"reflect"
 	"log"
 	 "golang.org/x/crypto/bcrypt"
 
@@ -17,31 +15,28 @@ import (
 func (m *postgresDBRepo) AuthUser (email, testPaswword string) (int, error) {
    	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
-	
-	var id longint
 
-    var result string
+
+	var id int
+
+    var pass string
 	 
-	log.Println(email)
-    query := `select (id, password)
+    query := `select id, password
 			from users where email = $1`
 
     row := m.DB.QueryRowContext(ctx, query,email)
-    err := row.Scan(&id,&result)
+    err := row.Scan(&id ,&pass)
 	if err != nil  {
-		 log.Println("error scan")
+		 log.Println("user not found:",err)
 		return id, err
 	}
-	 log.Println(result)
-	 log.Println(id)
-//	err = bcrypt.CompareHashAndPassword([]byte(hashpassword),[]byte(testPaswword))
-//	if err == bcrypt.ErrMismatchedHashAndPassword  {
-//		return 0, err
-//	} else 
-//	{
-//      return 0, err
-//	}
-//
+	err = bcrypt.CompareHashAndPassword([]byte(pass),[]byte(testPaswword))
+	if err == bcrypt.ErrMismatchedHashAndPassword  {
+		log.Println("password not match:",err)
+		return 0, err
+	} 
+
+    log.Println("password ok:",err)
 	return id, nil
 }
 
@@ -51,7 +46,7 @@ func (m *postgresDBRepo) GetUserByID (id int) (models.User, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
 
-	query := `select (id,first_name,last_name,email, password,access_level) 
+	query := `select id,first_name,last_name,email, password,access_level 
 			from users where id = $1`
 
 	row := m.DB.QueryRowContext(ctx, query,id)
@@ -93,7 +88,9 @@ func (m *postgresDBRepo) InsertUser(res models.User) (int, error) {
 		3,
 	)
 	if err != nil {
-		return 0, err
+		 log.Println("user not inserted:",err)
+		return  0, err
 	}
+	 log.Println("user inserted")
 	return 0 , nil
 }

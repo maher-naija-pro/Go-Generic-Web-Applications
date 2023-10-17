@@ -28,9 +28,9 @@ func (m *Repository) Login(w http.ResponseWriter, r *http.Request) {
 
 	ID, err := m.DB.AuthUser(email,password)
 	if err != nil {
-		log.Println(err)
-		m.App.Session.Put(r.Context(), "error", "can't insert reservation into database!")
-		http.Redirect(w, r, "login", http.StatusTemporaryRedirect)
+		log.Println("cant login")
+		m.App.Session.Put(r.Context(), "error", "can't login")
+		http.Redirect(w, r, "login", http.StatusSeeOther)
 		return
 	}
 	_ = ID
