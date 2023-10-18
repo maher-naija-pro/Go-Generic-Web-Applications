@@ -3,6 +3,7 @@ package handlers
 import (
 	"net/http"
 	"log"
+	"fmt"
 	"web_server/internal/models"
 	"web_server/internal/forms"
 	"web_server/internal/render"
@@ -32,14 +33,18 @@ func (m *Repository) Login(w http.ResponseWriter, r *http.Request) {
 	myForm := forms.New(r.PostForm)
 	
 	myForm.Required("email", password)
-	if !myForm.Valid() { //TODO 
+	if !myForm.Valid() { 
+		m.App.Session.Put(r.Context(), "error", "can't login")
+		http.Redirect(w, r, "error", http.StatusSeeOther)
 	}
 
 	ID, err := m.DB.AuthUser(email,password)
 	if err != nil {
-		log.Println("cant login") 
-		m.App.Session.Put(r.Context(), "error", "can't login")
-		http.Redirect(w, r, "login", http.StatusSeeOther)
+		
+        log.Println(err)
+		m.App.Session.Put(r.Context(), "error", fmt.Sprint(err)  )
+		http.Redirect(w, r, "/error", http.StatusSeeOther)
+		return
 	}
 
 

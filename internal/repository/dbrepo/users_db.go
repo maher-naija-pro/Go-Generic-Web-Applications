@@ -6,6 +6,7 @@ import (
 	"web_server/internal/models"
 	"time"
 	"log"
+	"errors"
 	 "golang.org/x/crypto/bcrypt"
 
 )
@@ -23,13 +24,12 @@ func (m *postgresDBRepo) AuthUser (email, testPaswword string) (int, error) {
     row := m.DB.QueryRowContext(ctx, query,email)
     err := row.Scan(&id ,&pass)
 	if err != nil  {
-		 log.Println("user not found:",err)
-		return id, err
+		return id, errors.New("user not found on database")
 	}
 	err = bcrypt.CompareHashAndPassword([]byte(pass),[]byte(testPaswword))
 	if err == bcrypt.ErrMismatchedHashAndPassword  {
 		log.Println("password not match:",err)
-		return 0, err
+		return 0, errors.New("password not match on database")
 	} 
     log.Println("password ok:",err)
 	return id, nil
