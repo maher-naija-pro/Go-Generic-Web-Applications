@@ -32,21 +32,27 @@ func (m *Repository) Login(w http.ResponseWriter, r *http.Request) {
 
 	myForm := forms.New(r.PostForm)
 	
-	myForm.Required("email", password)
-
-	if !myForm.Has("email") { 
-		m.App.Session.Put(r.Context(), "error", "please give email")
-		http.Redirect(w, r, "/error", http.StatusSeeOther)
-		return
-		}else if  !myForm.IsEmail("email") {
-		m.App.Session.Put(r.Context(), "error", "not a valid email address")
-		http.Redirect(w, r, "/error", http.StatusSeeOther)
-		return
+	myForm.Required("email", "password")
+    myForm.IsEmail("email")
 	
-	} else if  !myForm.Has("password") {
-		m.App.Session.Put(r.Context(), "error", "please give password")
-		http.Redirect(w, r, "/error", http.StatusSeeOther)
-		return
+	if !myForm.Valid() { 
+		 log.Println("not valid")
+		render.RenderTemplate(w,"login.page.tmpl",&models.TemplateData{
+          Forms: myForm,
+		})
+          return
+//		m.App.Session.Put(r.Context(), "error", "please give email")
+//		http.Redirect(w, r, "/error", http.StatusSeeOther)
+//		return
+//		}else if  !myForm.IsEmail("email") {
+//		m.App.Session.Put(r.Context(), "error", "not a valid email address")
+//		http.Redirect(w, r, "/error", http.StatusSeeOther)
+//		return
+//	
+//	} else if  !myForm.Has("password") {
+//		m.App.Session.Put(r.Context(), "error", "please give password")
+//		http.Redirect(w, r, "/error", http.StatusSeeOther)
+//		return
 	}
 	
 
