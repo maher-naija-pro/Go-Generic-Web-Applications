@@ -37,7 +37,7 @@ func (m *Repository) Login(w http.ResponseWriter, r *http.Request) {
 	
 	if !myForm.Valid() { 
 		 log.Println("not valid")
-		render.RenderTemplate(w,"login.page.tmpl",&models.TemplateData{
+		 render.RenderTemplate(w,"login.page.tmpl",&models.TemplateData{
           Forms: myForm,
 		})
           return
@@ -68,5 +68,4 @@ func (m *Repository) Login(w http.ResponseWriter, r *http.Request) {
 	m.App.Session.Put(r.Context(),"user_id",ID) 
 	m.App.Session.Put(r.Context(),"flash","logged sucessful")
     http.Redirect(w, r, "", http.StatusSeeOther)	
-
 }

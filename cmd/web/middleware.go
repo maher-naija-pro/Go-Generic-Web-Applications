@@ -3,6 +3,7 @@ package main
 import (
 	"github.com/justinas/nosurf"
 	"net/http"
+	"web_server/internal/helpers"
 )
 
 // NoSurf is the csrf protection middleware
@@ -22,3 +23,16 @@ func NoSurf(next http.Handler) http.Handler {
 func SessionLoad(next http.Handler) http.Handler {
 	return session.LoadAndSave(next)
 }
+
+
+func Auth(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) 	{
+
+		if !helpers.IsAuth(r) {
+            session.Put (r.Context(), "error", "loginfisrt")
+            http.Redirect(w, r, "/login", http.StatusSeeOther)	
+		    return
+          }    
+		  next.ServeHTTP(w,r)
+	}	)
+	}
