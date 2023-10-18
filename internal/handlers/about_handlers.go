@@ -15,7 +15,7 @@ func (m *Repository) About(w http.ResponseWriter, r *http.Request) {
 	stringMap["remote_ip"] = remoteIP
 
 	// send data to the template
-	render.RenderTemplate(w, "about.page.tmpl", &models.TemplateData{
+	render.RenderTemplate(w, r , "about.page.tmpl", &models.TemplateData{
 		StringMap: stringMap,
 	})
 }

@@ -11,7 +11,7 @@ import (
 // login is the handler for the login page
 func (m *Repository) Pass_Email_Show(w http.ResponseWriter, r *http.Request) {
 	
-	render.RenderTemplate(w, "pass_email.page.tmpl", &models.TemplateData{})
+	render.RenderTemplate(w,r, "pass_email.page.tmpl", &models.TemplateData{})
 }
 
 

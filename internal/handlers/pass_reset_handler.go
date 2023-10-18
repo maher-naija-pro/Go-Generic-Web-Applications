@@ -11,7 +11,7 @@ import (
 // reset pass tempalte
 func (m *Repository) Pass_Reset_Show(w http.ResponseWriter, r *http.Request) {
 	
-	render.RenderTemplate(w, "reset_pass.page.tmpl", &models.TemplateData{})
+	render.RenderTemplate(w,r, "reset_pass.page.tmpl", &models.TemplateData{})
 }
 
 

@@ -12,7 +12,7 @@ import (
 // login is the handler for the login page
 func (m *Repository) Login_Show(w http.ResponseWriter, r *http.Request) {
 	
-	render.RenderTemplate(w, "login.page.tmpl", &models.TemplateData{})
+	render.RenderTemplate(w, r,"login.page.tmpl", &models.TemplateData{})
 }
 
 
@@ -37,7 +37,7 @@ func (m *Repository) Login(w http.ResponseWriter, r *http.Request) {
 	
 	if !myForm.Valid() { 
 		 log.Println("not valid")
-		 render.RenderTemplate(w,"login.page.tmpl",&models.TemplateData{
+		 render.RenderTemplate(w,r,"login.page.tmpl",&models.TemplateData{
           Forms: myForm,
 		})
           return

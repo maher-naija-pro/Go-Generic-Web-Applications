@@ -18,6 +18,9 @@ func routes(app *config.AppConfig) http.Handler {
 	mux.Get("/", handlers.Repo.Home)
 	mux.Get("/about", handlers.Repo.About)
 	mux.Post("/login", handlers.Repo.Login)
+	// TODO add logout api
+	//mux.Post("/logout", handlers.Repo.Login)
+	
     mux.Get("/login", handlers.Repo.Login_Show)
 	mux.Post("/subscribe",handlers.Repo.Subscribe)
 	mux.Get("/error", handlers.Repo.Error_Show)

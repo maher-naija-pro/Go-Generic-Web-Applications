@@ -9,7 +9,7 @@ import (
 
 // subscribe is the handler for the subscribe page
 func (m *Repository) Subscribe_Show(w http.ResponseWriter, r *http.Request) {
-	render.RenderTemplate(w, "subscribe.page.tmpl", &models.TemplateData{})
+	render.RenderTemplate(w,r, "subscribe.page.tmpl", &models.TemplateData{})
 }
 
 func (m *Repository) Subscribe(w http.ResponseWriter, r *http.Request) {

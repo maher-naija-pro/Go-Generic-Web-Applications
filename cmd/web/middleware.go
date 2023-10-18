@@ -3,6 +3,7 @@ package main
 import (
 	"github.com/justinas/nosurf"
 	"net/http"
+	"log"
 	"web_server/internal/helpers"
 )
 
@@ -29,10 +30,12 @@ func Auth(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) 	{
 		    
 		if !helpers.IsAuth(r) {
+			log.Println("midelware not auth")
             session.Put (r.Context(), "error", "loginfisrt")
             http.Redirect(w, r, "/login", http.StatusSeeOther)	
 		    return
           }    
+		  log.Println("midelware auth")
 		  next.ServeHTTP(w,r)
 	}	)
 	}

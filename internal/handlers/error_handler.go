@@ -11,7 +11,7 @@ func (m *Repository) Error_Show(w http.ResponseWriter, r *http.Request) {
 	
 	stringMap := make(map[string]string)
 	stringMap["error"] = m.App.Session.GetString(r.Context(), "error")
-	render.RenderTemplate(w, "error.page.tmpl", &models.TemplateData{StringMap: stringMap})
+	render.RenderTemplate(w, r ,"error.page.tmpl", &models.TemplateData{StringMap: stringMap})
 }
 
 
