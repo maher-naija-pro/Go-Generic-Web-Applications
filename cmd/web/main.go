@@ -9,6 +9,7 @@ import (
 	"web_server/internal/handlers"
 	"web_server/internal/render"
 	"web_server/internal/driver"
+	"web_server/internal/helpers"
 	"github.com/alexedwards/scs/v2"
 )
 
@@ -55,6 +56,7 @@ func main() {
 	repo := handlers.NewRepo(&app,db)
 	handlers.NewHandlers(repo)
 	render.NewTemplates(&app)
+	helpers.NewHelpers(&app)
 
 	fmt.Println(fmt.Sprintf("Staring application on port %s", portNumber))
 
