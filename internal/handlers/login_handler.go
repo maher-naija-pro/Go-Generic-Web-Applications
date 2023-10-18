@@ -33,14 +33,25 @@ func (m *Repository) Login(w http.ResponseWriter, r *http.Request) {
 	myForm := forms.New(r.PostForm)
 	
 	myForm.Required("email", password)
-	if !myForm.Valid() { 
-		m.App.Session.Put(r.Context(), "error", "can't login")
-		http.Redirect(w, r, "error", http.StatusSeeOther)
+
+	if !myForm.Has("email") { 
+		m.App.Session.Put(r.Context(), "error", "please give email")
+		http.Redirect(w, r, "/error", http.StatusSeeOther)
+		return
+		}else if  !myForm.IsEmail("email") {
+		m.App.Session.Put(r.Context(), "error", "not a valid email address")
+		http.Redirect(w, r, "/error", http.StatusSeeOther)
+		return
+	
+	} else if  !myForm.Has("password") {
+		m.App.Session.Put(r.Context(), "error", "please give password")
+		http.Redirect(w, r, "/error", http.StatusSeeOther)
+		return
 	}
+	
 
 	ID, err := m.DB.AuthUser(email,password)
-	if err != nil {
-		
+	if err != nil {	
         log.Println(err)
 		m.App.Session.Put(r.Context(), "error", fmt.Sprint(err)  )
 		http.Redirect(w, r, "/error", http.StatusSeeOther)
