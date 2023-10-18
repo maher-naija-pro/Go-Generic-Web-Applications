@@ -2,13 +2,9 @@
 
 {{define "content"}}
 
-
-
 <form action="/login" method="POST" novalidate > 
         <div class="form-group">
-                <h3>Login Here</h3>
-                <label for="email">Email</label>
-                <input type="text" id="email" name="email" required>
+                <h3>Reset Pass</h3>
         </div>
 
         <div class="form-group">
@@ -16,18 +12,14 @@
                 <input type="password" id="password" name="password" required>
         </div>
 
-        <div class="social">
-        <a href="">Mot de passe oublié ?</a>
+        <div class="form-group">
+                <label for="password2">Repeat Password</label>
+                <input type="password" id="password2" name="password2" required>
         </div>
-
 
         <div class="form-group">
-                <button>Log In</button>
+                <button>Reset pass</button>
         </div>
-         <div class="social">
-        <a href="subscribe">no account Subscribe</a>
-        </div>
-        <div class="social">
 
         </div>
 
