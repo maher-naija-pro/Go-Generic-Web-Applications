@@ -2,7 +2,9 @@
 # https://github.com/github/gitignore/blob/main/community/Golang/Go.AllowList.gitignore
 #
 # Binaries for programs and plugins
-# #
+
+.vscode
+.favorites.json
 bookings-app-0.0.42/
 bookings
 bin/
