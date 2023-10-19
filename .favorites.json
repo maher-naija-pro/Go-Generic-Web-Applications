@@ -25,5 +25,14 @@
         "workspaceRoot": null,
         "workspacePath": null,
         "id": "vp0VJYHNAqZ8TDuI"
+    },
+    {
+        "type": "File",
+        "name": "d:\\go_web\\internal\\handlers\\logout_handler.go",
+        "parent_id": null,
+        "fsPath": "d:\\go_web\\internal\\handlers\\logout_handler.go",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "jWcF5Vdnmuq47Tey"
     }
 ]

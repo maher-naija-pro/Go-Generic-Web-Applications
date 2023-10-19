@@ -20,12 +20,11 @@ func NewTemplates(a *config.AppConfig) {
 	app = a
 }
 
-
-//send data from session to all templates
+// send data from session to all templates
 func AddDefaultData(td *models.TemplateData, r *http.Request) *models.TemplateData {
-	 if app.Session.Exists(r.Context(), "user_id") {
+	if app.Session.Exists(r.Context(), "user_id") {
 		td.IsAuthentifacted = 1
-	 }
+	}
 
 	return td
 }
@@ -48,7 +47,7 @@ func RenderTemplate(w http.ResponseWriter, r *http.Request, tmpl string, td *mod
 
 	buf := new(bytes.Buffer)
 
-	td = AddDefaultData(td,r)
+	td = AddDefaultData(td, r)
 
 	_ = t.Execute(buf, td)
 
