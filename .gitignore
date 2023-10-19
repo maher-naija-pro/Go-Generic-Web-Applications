@@ -3,8 +3,6 @@
 #
 # Binaries for programs and plugins
 
-.vscode
-.favorites.json
 bookings-app-0.0.42/
 bookings
 bin/
