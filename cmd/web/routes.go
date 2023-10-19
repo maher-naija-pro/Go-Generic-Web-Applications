@@ -19,18 +19,18 @@ func routes(app *config.AppConfig) http.Handler {
 	mux.Get("/", handlers.Repo.Home)
 	mux.Get("/about", handlers.Repo.About)
 	mux.Post("/login", handlers.Repo.Login)
-	mux.Get("/logout", handlers.Repo.Logout)
+
 	mux.Get("/login", handlers.Repo.Login_Show)
 	mux.Post("/subscribe", handlers.Repo.Subscribe)
 	mux.Get("/error", handlers.Repo.Error_Show)
 	mux.Get("/askpass", handlers.Repo.Pass_Email_Show)
 	mux.Post("/askpass", handlers.Repo.Pass_Email)
-	//mux.Get("/resetpass", handlers.Repo.Pass_Reset_Show)
+	mux.Get("/resetpass", handlers.Repo.Pass_Reset_Show)
 	mux.Post("/resetpass", handlers.Repo.Pass_Reset)
 
 	mux.Route("/", func(mux chi.Router) {
 		mux.Use(Auth)
-		mux.Get("/resetpass", handlers.Repo.Pass_Reset_Show)
+		mux.Get("/logout", handlers.Repo.Logout)
 	})
 	// serve static files
 	fileServer := http.FileServer(http.Dir("./static/"))
