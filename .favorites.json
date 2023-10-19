@@ -1,0 +1,29 @@
+[
+    {
+        "type": "File",
+        "name": "d:\\go_web\\cmd\\web\\routes.go",
+        "parent_id": null,
+        "fsPath": "d:\\go_web\\cmd\\web\\routes.go",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "7qkaSbc1NErwKfPu"
+    },
+    {
+        "type": "File",
+        "name": "d:\\go_web\\internal\\handlers\\login_handler.go",
+        "parent_id": null,
+        "fsPath": "d:\\go_web\\internal\\handlers\\login_handler.go",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "QiKX58M14ZvCL7NB"
+    },
+    {
+        "type": "File",
+        "name": "d:\\go_web\\templates\\login.page.tmpl",
+        "parent_id": null,
+        "fsPath": "d:\\go_web\\templates\\login.page.tmpl",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "vp0VJYHNAqZ8TDuI"
+    }
+]
