@@ -4,41 +4,59 @@
 
 
 
-<form class="needs-validation" action="/login" method="POST" novalidate > 
-        <div class="form-group">
-                <h3>Login Here</h3>
-                <label for="email">Email</label>
-                <input type="text" id="email" name="email" placeholder="email" required>
-        </div>
-         <div class="invalid-feedback">
-        Please give an email 
-      </div>
+<form class=" flex-row needs-validation" action="/login" method="POST" novalidate > 
+       <div>
+        <h3>Login Here</h3>
+        <div class=" has-validation form-group">
+                 <label for="validationCustom01" for="email">Email</label>
+                 <input type="text" class="form-control" id="email" name="email" placeholder="Email" required>
+                 <div class="invalid-feedback">
+                    <h6 class="text-danger" >Please give an email</h6>
+                 </div>
 
-        <div class="form-group">
+        </div>
+       
+
+        <div class="has-validation form-group">
                 <label for="password">Password</label>
-                <input type="password" id="password" name="password" required>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+                <div class="invalid-feedback">
+                    <h6 class="text-danger" >Please give a valid password</h6>
+                 </div>
         </div>
 
-        <div class="social">
-        <a href="/askpass">Mot de passe oublié ?</a>
+        <div>
+        <a  href="/askpass">Mot de passe oublie ?</a>
         </div>
 
 
-        <div class="form-group">
-                <button>Log In</button>
+        <div class="has-validationform-group">
+                <button class="" type="submit" >Log In</button>
         </div>
-         <div class="social">
-        <a href="subscribe">no account Subscribe</a>
-        </div>
-        <div class="social">
-
+         
+        <div>
+        <a href="Subscribe">No account Subscribe</a>
         </div>
 
+      </div> 
 </form>
 
+<script>
+           var forms = document.querySelectorAll('.needs-validation')
+           Array.prototype.slice.call(forms)
+         .forEach(function (form) {
+          form.addEventListener('submit', function (event) {
+                  console.log("formvalidation")
+           if (!form.checkValidity()) {
+            event.preventDefault()
+            event.stopPropagation()
+          }
 
+          form.classList.add('was-validated')
+           }, false)
+           })
+        
 
-</div>
-
+</script>
 
 {{end}}
