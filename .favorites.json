@@ -34,5 +34,14 @@
         "workspaceRoot": null,
         "workspacePath": null,
         "id": "jWcF5Vdnmuq47Tey"
+    },
+    {
+        "type": "File",
+        "name": "d:\\go_web\\internal\\models\\templatedata.go",
+        "parent_id": null,
+        "fsPath": "d:\\go_web\\internal\\models\\templatedata.go",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "PBNYQLzkWbC8KnA1"
     }
 ]

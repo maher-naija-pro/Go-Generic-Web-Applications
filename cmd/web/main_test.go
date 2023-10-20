@@ -13,6 +13,6 @@ func Divide(a int, b int) int {
 
 func TestDiv(t *testing.T) {
 	aa := Divide(5, 5)
-	t.Log("ok")
+	t.Error("ok")
 	_ = aa
 }

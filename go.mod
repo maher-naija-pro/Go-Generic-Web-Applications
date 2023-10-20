@@ -2,8 +2,6 @@ module web_server
 
 go 1.21
 
-toolchain go1.21.1
-
 require (
 	github.com/alexedwards/scs/v2 v2.4.0
 	github.com/asaskevich/govalidator v0.0.0-20230301143203-a9d515a09cc2
@@ -34,6 +32,7 @@ require (
 	contrib.go.opencensus.io/integrations/ocsql v0.1.7 // indirect
 	dario.cat/mergo v1.0.0 // indirect
 	dmitri.shuralyov.com/gpu/mtl v0.0.0-20190408044501-666a987793e9 // indirect
+	github.com/0xAX/notificator v0.0.0-20220220101646-ee9b8921e557 // indirect
 	github.com/Azure/azure-amqp-common-go/v3 v3.2.3 // indirect
 	github.com/Azure/azure-pipeline-go v0.2.3 // indirect
 	github.com/Azure/azure-sdk-for-go v57.0.0+incompatible // indirect
@@ -52,7 +51,7 @@ require (
 	github.com/Azure/go-autorest/logger v0.2.1 // indirect
 	github.com/Azure/go-autorest/tracing v0.6.0 // indirect
 	github.com/BurntSushi/locker v0.0.0-20171006230638-a6e239ea1c69 // indirect
-	github.com/BurntSushi/toml v0.3.1 // indirect
+	github.com/BurntSushi/toml v1.3.2 // indirect
 	github.com/BurntSushi/xgb v0.0.0-20160522181843-27f122750802 // indirect
 	github.com/GoogleCloudPlatform/cloudsql-proxy v1.33.9 // indirect
 	github.com/Masterminds/semver/v3 v3.1.1 // indirect
@@ -103,6 +102,8 @@ require (
 	github.com/cncf/udpa/go v0.0.0-20220112060539-c52dc94e7fbe // indirect
 	github.com/cncf/xds/go v0.0.0-20230607035331-e9ce68804cb4 // indirect
 	github.com/cockroachdb/apd v1.1.0 // indirect
+	github.com/codegangsta/envy v0.0.0-20141216192214-4b78388c8ce4 // indirect
+	github.com/codegangsta/gin v0.0.0-20230218063734-2c98d96c9244 // indirect
 	github.com/coreos/go-systemd v0.0.0-20190719114852-fd7a80b32e1f // indirect
 	github.com/coreos/go-systemd/v22 v22.5.0 // indirect
 	github.com/cosmtrek/air v1.47.0 // indirect
@@ -221,6 +222,7 @@ require (
 	github.com/mattn/go-ieproxy v0.0.1 // indirect
 	github.com/mattn/go-isatty v0.0.20 // indirect
 	github.com/mattn/go-runewidth v0.0.9 // indirect
+	github.com/mattn/go-shellwords v1.0.12 // indirect
 	github.com/mitchellh/go-homedir v1.1.0 // indirect
 	github.com/mitchellh/hashstructure v1.1.0 // indirect
 	github.com/mitchellh/mapstructure v1.5.0 // indirect
@@ -265,6 +267,7 @@ require (
 	github.com/tdewolff/test v1.0.9 // indirect
 	github.com/ugorji/go v1.1.7 // indirect
 	github.com/ugorji/go/codec v1.1.7 // indirect
+	github.com/urfave/cli v1.22.14 // indirect
 	github.com/yuin/goldmark v1.5.6 // indirect
 	github.com/zenazn/goji v0.9.0 // indirect
 	go.opencensus.io v0.24.0 // indirect
