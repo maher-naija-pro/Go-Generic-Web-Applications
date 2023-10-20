@@ -1,0 +1,20 @@
+{
+    "cSpell.words": [
+        "maher"
+    ],
+    "favorites.resources": [
+        {
+            "filePath": "internal\\repository\\dbrepo\\users_db.go",
+            "group": "Default"
+        },
+        {
+            "filePath": "internal\\repository\\dbrepo\\users_db.go",
+            "group": "db"
+        }
+    ],
+    "favorites.groups": [
+        "Default",
+        "db"
+    ],
+    "favorites.currentGroup": "db"
+}
